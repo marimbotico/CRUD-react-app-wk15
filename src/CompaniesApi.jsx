@@ -1,4 +1,5 @@
-const API_URL = 'https://dummy-json.mock.beeceptor.com/companies';// datab
+// const API_URL = 'https://dummy-json.mock.beeceptor.com/companies';// datab
+const API_URL = 'https://66b412549f9169621ea1b740.mockapi.io/users/companies';// database url
 
 export const companyApi = {
     get: async () => {// async method that fetches all the companies
@@ -14,6 +15,7 @@ export const companyApi = {
         }
     },
     post: async (company) => {
+        console.log("post in CompaniesApi.jsx - Running ", company);
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',// specifies the request to create new data
@@ -33,16 +35,15 @@ export const companyApi = {
     },
     put: async (company) => {
         try {
-            const response = await fetch(`${API_URL}/${company._id}`, {//specifies which company to update
+            console.log("put in CompaniesApi.jsx - Running ", company);
+            const response = await fetch(`${API_URL}/${company.id}`, {//specifies which company to update
                 method: 'PUT',// use PUT to update
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(company),
             });
-            if (!response.ok) {
-                throw new Error('Failed to update company');
-            }
+            
             return await response.json();
         } catch (error) {
             console.error('Error updating company:', error);
@@ -51,6 +52,7 @@ export const companyApi = {
     },
     delete: async (id) => {// deletes a company by id. Having trouble here (id) or (company._id)?
         try {
+            console.log("delete in CompaniesApi.jsx - Running ", id);
             const response = await fetch(`${API_URL}/${id}`, {
                 method: 'DELETE',
             });
