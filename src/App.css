@@ -1,24 +1,45 @@
 .table {
     border-top: 5px;
     border-color: black;
-    color: rgb(21, 206, 154);
+    color: rgb(5, 93, 68);
+    flex-direction: column;
 }
 
 body {
-    background-color: rgb(33, 206, 222);
+    background-color: rgb(168, 233, 239);
 }
 
 form {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    align-self: center;
 }
 
 h1 {
     text-align: center;
     text-decoration: underline;
-    background-color: rgb(18, 229, 229) ;
+    text-transform: uppercase;
+    background-color: rgb(5, 98, 98) ;
     color: rgb(237, 242, 245);
 }
+
+h4 {
+margin-bottom: 1rem;
+text-decoration: underline;
+background-color: rgb(31, 196, 196);
+color: rgb(38, 37, 37);
+
+}
+.text-center {
+    text-align: center;
+}
+
+#root {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+

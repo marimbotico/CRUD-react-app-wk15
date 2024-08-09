@@ -1,4 +1,4 @@
-const API_URL = 'https://dummy-json.mock.beeceptor.com/companies';// datab
+const API_URL = 'https://66b412549f9169621ea1b740.mockapi.io/users/companies';// database url
 
 export const companyApi = {
     get: async () => {// async method that fetches all the companies
@@ -8,12 +8,12 @@ export const companyApi = {
                 throw new Error('Failed to fetch companies');// if the response is not ok display error message
             }
             return await response.json();
-        } catch (error) {//catch any errors
-            console.error('Error fetching companies:', error);
-            return [];
+        } catch (e) {//catch any errors
+            console.log('Error fetching companies:', e);
         }
     },
     post: async (company) => {
+        console.log("post in CompaniesApi.jsx - Running" , company)
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',// specifies the request to create new data
@@ -26,14 +26,14 @@ export const companyApi = {
                 throw new Error('Failed to add company');
             }
             return await response.json();
-        } catch (error) {
-            console.error('Error adding company:', error);
-            return null;
+        } catch (e) {
+            console.log('Error adding company:', e);
         }
     },
     put: async (company) => {
         try {
-            const response = await fetch(`${API_URL}/${company._id}`, {//specifies which company to update
+            console.log("put in CompaniesApi.jsx- Running", company)
+            const response = await fetch(`${API_URL}/${company.id}`, {//specifies which company to update
                 method: 'PUT',// use PUT to update
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,13 +44,13 @@ export const companyApi = {
                 throw new Error('Failed to update company');
             }
             return await response.json();
-        } catch (error) {
-            console.error('Error updating company:', error);
-            return null;
+        } catch (e) {
+            console.log('Error updating company:', e);
         }
     },
     delete: async (id) => {// deletes a company by id. Having trouble here (id) or (company._id)?
         try {
+            console.log("delete in CompaniesApi.jsx - Running ", id);
             const response = await fetch(`${API_URL}/${id}`, {
                 method: 'DELETE',
             });
@@ -58,9 +58,8 @@ export const companyApi = {
                 throw new Error('Failed to delete company');
             }
             return await response.json();
-        } catch (error) {
-            console.error('Error deleting company:', error);
-            return null;
+        } catch (e) {
+            console.log('Error deleting company:', e);
         }
     }
 };

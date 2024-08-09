@@ -1,7 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 
 const Table = ({ companies, updateCompany, deleteCompany }) => {// destructuring the companies array deleteCompany as a prop
+    const [newName, setNewName] = useState(''); //useState to update the name of the company
+
+    const submitUpdate = (company, e) => {
+        e.preventDefault();
+        console.log('onSubmit', newName);
+        let newCompany = {
+            name: newName,
+            industry: company.industry,
+            domain: company.domain,
+            id: company.id
+        }
+        updateCompany(newCompany);
+    }
+
     return (// bootstrap table settings
+    <div className='text-center'> 
+    <h4>List of Companies</h4>
         <table className="table table-info">
             <thead className="thead-dark">
                 <tr>
@@ -18,15 +35,15 @@ const Table = ({ companies, updateCompany, deleteCompany }) => {// destructuring
                         <td>{company.name}</td>
                         <td>{company.industry}</td>
                         <td><a href={company.domain} target="_blank" rel="noopener noreferrer">{company.domain}</a></td>
-                     
-                            <td>
-                                <input placeholder='Enter New Name'></input>
-                                <button className="btn btn-primary" onClick={() => updateCompany(company._id)}>Update</button>
-                            </td>
-                            <td>
+
+                        <td>
+                            <input placeholder='Update Name' onChange={(e) => setNewName(e.target.value)}></input>
+                            <button className="btn btn-primary" onClick={(e) => submitUpdate(company, e)}>Update</button>
+                        </td>
+                        <td>
                             <button
                                 className="btn btn-danger"
-                                onClick={() => deleteCompany(company._id)}>
+                                onClick={() => deleteCompany(company.id)}>
                                 Delete
                             </button>
                         </td>
@@ -34,6 +51,7 @@ const Table = ({ companies, updateCompany, deleteCompany }) => {// destructuring
                 ))}
             </tbody>
         </table>
+        </div>
     );// each row is assigned a company unique key using the companies id.
 }// Had to google this: <a href={company.domain} target="_blank" rel="noopener noreferrer">: Makes the company’s website a clickable link that opens in a new tab.
 

@@ -24,6 +24,7 @@ const CompaniesList = () => {
 
     const updateCompany = async (updatedCompany) => {
         try {
+            console.log("update in CompaniesList.jsx -Running", updatedCompany);
             await companyApi.put(updatedCompany);//Calls the put method from companyApi to update
             getCompanies();// refreshes the companies list}
         } catch (error) {
@@ -32,6 +33,7 @@ const CompaniesList = () => {
     };
 
     const addNewCompany = async (company) => {
+        console.log("addNewCompany in CompaniesList.jsx - Running", company)
         try {
             await companyApi.post(company);//Calls the post method from companyApi. Adds a new company and refreshes the array
             getCompanies();
@@ -41,6 +43,7 @@ const CompaniesList = () => {
     };
 
     const deleteCompany = async (id) => {
+        console.log("delete in CompaniesList.jsx - Running ", id);
         try {
             await companyApi.delete(id);//Calls the delete method from companyApi. Deletes company by id and refreshes it
             getCompanies();

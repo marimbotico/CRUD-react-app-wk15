@@ -8,8 +8,13 @@ const NewCompanyForm = ({ addNewCompany }) => {//addNewCompany prop
     // useState to set up the name of the company, industry and domain.
     const onSubmit = (e) => {
         e.preventDefault();// prevent default form submission
+        let newCompany = {// define the new company object
+            name: name,
+            industry: industry,
+            domain: domain
+        }
         if (name && industry && domain) {// checks that are fields are filled
-            addNewCompany({ name, industry, domain });//calls the addNewCompany function with and updates the data
+            addNewCompany(newCompany);//calls the addNewCompany function with and updates the data
             setName('');
             setIndustry('');
             setDomain('');// resets all form fields after submission
@@ -22,7 +27,7 @@ const NewCompanyForm = ({ addNewCompany }) => {//addNewCompany prop
         <>
             <h4 className="text-center">Add New Company</h4>
             <form>
-                <div className="form-group" onSubmit={onSubmit}>
+                <div className="form-group">
                     <label>Company Name</label>
                     <input
                         type="text"
@@ -45,11 +50,11 @@ const NewCompanyForm = ({ addNewCompany }) => {//addNewCompany prop
                         className="form-control"
                     />
                     <br />
-                    <button type="submit" className="btn btn-success">Add Company</button>
+                    <button className="btn btn-success" onClick={(e) => onSubmit(e)}>Add Company</button>
                 </div>
             </form>
         </>
-    );
+    );// onClick={(e) => onSubmit(e)} submits the event
 }
 
 export default NewCompanyForm;

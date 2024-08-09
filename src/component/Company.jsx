@@ -8,8 +8,9 @@ const Company = ({ company, updateCompany, deleteCompany }) => {
                     <br />
                     <label>{`Website: ${company.domain}`}</label>
                     <br />
-                    <button onClick={() => deleteCompany(company._id)}>Delete</button>
+                    <input placeholder='Enter New Name'></input>
                     <button onClick={() => updateCompany(company._id)}>Update</button>
+                    <button onClick={() => deleteCompany(company._id)}>Delete</button> 
                 </li>
             </ul>
         </div>
