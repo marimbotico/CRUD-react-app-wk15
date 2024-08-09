@@ -15,7 +15,7 @@ const CompaniesList = () => {
     const getCompanies = async () => {// fetches the companies from the API.
         try {
             const companies = await companyApi.get();// uses the get method from companyApi. Stores result in `companies`
-            setCompanies(companies);
+            setCompanies(companies);// set companies to the data
             setLoading(false);// updates the companies state with the fetched data} 
         } catch (error) {
             console.log(error)
@@ -26,7 +26,7 @@ const CompaniesList = () => {
         try {
             console.log("update in CompaniesList.jsx -Running", updatedCompany);
             await companyApi.put(updatedCompany);//Calls the put method from companyApi to update
-            getCompanies();// refreshes the companies list}
+            getCompanies();// refreshes the companies list
         } catch (error) {
             console.log(error)
         }
@@ -36,7 +36,7 @@ const CompaniesList = () => {
         console.log("addNewCompany in CompaniesList.jsx - Running", company)
         try {
             await companyApi.post(company);//Calls the post method from companyApi. Adds a new company and refreshes the array
-            getCompanies();
+            getCompanies();// refreshes the companies list
         } catch (error) {
             console.error('Failed to add company:', error);
         }
@@ -67,5 +67,8 @@ const CompaniesList = () => {
         </div>
     );
 };
+
+//Pass the addNewCompany function as a prop to the NewCompanyForm component
+//Do the same with the Table component and pass in companies(3 properties) and 2 functions: updateCompany and deleteCompany
 
 export default CompaniesList;
